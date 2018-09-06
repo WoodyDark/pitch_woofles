@@ -1,0 +1,27 @@
+
+<%= form_with model: @feeding, url: feedings_path, method: :patch do |f| %>
+	<div class="form-field">
+		<%= f.label :Email %>
+	  	<%= f.text_field :email, type: 'email'%>
+	</div>
+
+	<div class="form-field">
+		<%= f.label :dispensation_seconds %>
+	  	<%= f.select :feeding_duration, 1..15 %>
+	</div>
+
+	<div class="form-field">
+		<%= f.label :feeding_time %>
+	  	<%= f.text_field :feeding_time %>
+	</div>
+
+	<div class="form-field">
+	  	<%= f.check_box :email_opt_out %>
+	  	<%= f.label :I_do_not_want_feeding_email_notifications %>
+	</div>
+
+	<div class="submit-field">
+	  <%= f.button :submit %>
+	</div>
+
+<% end %>

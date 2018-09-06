@@ -1,0 +1,4 @@
+
+class ControlRoom < ApplicationRecord
+
+end

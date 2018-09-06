@@ -1,0 +1,39 @@
+
+<div class="container" style="max-width: 80rem; margin-top: 10rem;">
+	<p class="small text-muted" style ="text-align-last: right; font-style: italic;"> currently signed in as <%= Feeding.first.email %> </p>
+	<div class="row">
+	  <div class="col-sm-6">
+	    <div class="card">
+	      <div class="card-body">
+	        <p class="card-text">
+	        	<a href="#" class="btn btn-primary"> Feed my pet now </a><br><br>
+	        	<input type="checkbox" checked data-toggle="toggle" data-on="Disable automatic pet feeding" data-off="Enable automatic pet feeding" data-onstyle="success" data-offstyle="danger">
+
+	        </p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-sm-6">
+	    <div class="card">
+	      <div class="card-body">
+	        <h5 class="card-title">Pet feeder mechanism</h5>
+	        <p class="card-text">
+	        	<p> Current feeding time: <%= Feeding.first.feeding_time%></p>
+	        	<p> Current feeding duration: <%= Feeding.first.feeding_duration%> seconds</p>
+	        	<% if Feeding.first.email_opt_out == true %>
+	        	<p class="small text-muted"> ** You are currently not signed up for email notifications of pet feeding ** </p>
+	        	<% else %>
+	        	<p class="small text-muted"> Feeding email notification to <%= Feeding.first.email%> enabled. </p>
+	        	<% end %>
+
+	        	<br><hr>
+
+	        	<p> <%= link_to "Update feeding mechanism and email preferences", edit_feedings_path %></p>
+	        </p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+
