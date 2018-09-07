@@ -1,24 +1,21 @@
 # README
+- Current working assumptions:
+  1) only one feeding schedule per owner (improve)
+  2) schedule has been created upon landing page
+  3) user knows how to type format of feeding time in forms (improve)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+- minimum viable product
+  - forms working (editing, creating)
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Bootstrap needed
+  - FORMS
+  
+  
+  
+- What's NOT working:
+  - connection of disabling automated pet feeder
+  - connection of feed pet now
+  - sign in mechanism
