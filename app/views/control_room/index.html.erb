@@ -2,6 +2,7 @@
 
 <div class="container" style="max-width: 80rem; margin-top: 10rem;">
 	<p class="small text-muted" style ="text-align-last: right; font-style: italic;"> currently signed in as <%= Feeding.first.email %> </p>
+	<p class="small text-muted" style ="text-align-last: right; font-style: italic;"> <%= button_to 'Sign out', sign_out_path, method: :delete %></p>
 	<div class="row">
 		<div class="col-sm-6">
 			  <div class="col-sm-12" style="margin-bottom: 2rem;">

@@ -6,4 +6,10 @@ Rails.application.routes.draw do
 
   root 'control_room#index'
 
+  resources :users, only: [:create] do
+    resource :password,
+      controller: "clearance/passwords",
+      only: [:create, :edit, :update]
+  end
+
 end

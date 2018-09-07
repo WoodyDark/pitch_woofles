@@ -36,8 +36,15 @@ class FeedingsController < ApplicationController
 	end
 
 	def feed 
-		
-		FeedingNotification.notify_owner(Feeding.first)
+		pyname = 'feed.py'
+		if system("python", pyname) 
+			if (Feeding.first.email_opt_out != true)
+				FeedingNotification.notify_owner(Feeding.first)
+			end
+		  	puts "feeding success!"
+		else
+		  	ErrorNotification.notify_owner(Feeding.first)
+		end
 	end
 
 	private
