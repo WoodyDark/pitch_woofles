@@ -36,6 +36,7 @@ class FeedingsController < ApplicationController
 	end
 
 	def feed 
+		
 		FeedingNotification.notify_owner(Feeding.first)
 	end
 

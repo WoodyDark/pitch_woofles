@@ -1,18 +1,33 @@
 
+
 <div class="container" style="max-width: 80rem; margin-top: 10rem;">
 	<p class="small text-muted" style ="text-align-last: right; font-style: italic;"> currently signed in as <%= Feeding.first.email %> </p>
 	<div class="row">
-	  <div class="col-sm-6">
-	    <div class="card">
-	      <div class="card-body">
-	        <p class="card-text">
-	        	<a href="#" class="btn btn-primary"> Feed my pet now </a><br><br>
-	        	<input type="checkbox" checked data-toggle="toggle" data-on="Disable automatic pet feeding" data-off="Enable automatic pet feeding" data-onstyle="success" data-offstyle="danger">
+		<div class="col-sm-6">
+			  <div class="col-sm-12" style="margin-bottom: 2rem;">
+			    <div class="card">
+			      <div class="card-body">
+			        <p class="card-text">
+			        	<a href="#" class="btn btn-primary" style=""> Feed my pet now </a><br><br>
+			        	<input type="checkbox" checked data-toggle="toggle" data-on="Disable automatic pet feeding" data-off="Enable automatic pet feeding" data-onstyle="success" data-offstyle="danger">
 
-	        </p>
-	      </div>
-	    </div>
-	  </div>
+			        </p>
+			      </div>
+			    </div>
+			  </div>
+
+			  <div class="col-sm-12">
+			      <div class="card" style="">
+			        <div class="card-body">
+			          <h5 class="card-title">Cleaning helper</h5>
+			          <p class="card-text">
+			          	<p> Food dispenser last cleaned: </p>
+			          </p>
+
+			        </div>
+			      </div>
+			    </div>
+		</div>
 	  <div class="col-sm-6">
 	    <div class="card">
 	      <div class="card-body">
