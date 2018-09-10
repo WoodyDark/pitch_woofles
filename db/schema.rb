@@ -10,16 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_07_075816) do
+ActiveRecord::Schema.define(version: 2018_09_10_163500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "feedings", force: :cascade do |t|
+  create_table "emails", force: :cascade do |t|
     t.string "email"
-    t.string "feeding_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "feeding_id"
+    t.index ["feeding_id"], name: "index_emails_on_feeding_id"
+  end
+
+  create_table "feeding_times", force: :cascade do |t|
+    t.time "feeding_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "feeding_id"
+    t.index ["feeding_id"], name: "index_feeding_times_on_feeding_id"
+  end
+
+  create_table "feedings", force: :cascade do |t|
+    t.string "pet_name"
+    t.date "pet_birthday"
+    t.string "cleaning_day"
+    t.time "cleaning_time"
+    t.boolean "notification", default: false
+    t.boolean "automated_feeding", default: false
     t.integer "feeding_duration", default: 5
-    t.boolean "email_opt_out", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,10 +46,8 @@ ActiveRecord::Schema.define(version: 2018_09_07_075816) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "user_name"
     t.string "email", null: false
     t.string "encrypted_password", limit: 128, null: false
-    t.string "pet_name"
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128, null: false
     t.index ["email"], name: "index_users_on_email"

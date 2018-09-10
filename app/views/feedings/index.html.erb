@@ -1,0 +1,106 @@
+<div class="jumbotron py-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-10">
+				<div class="text-left">
+					<h1 class="display-4 mx-auto "><%= Feeding.first.pet_name %>'s Feeder</h1>
+					<h4 class="font-weight-bold d-none d-lg-block">by WOOFLES Smart Feeder</h4>
+				</div>
+			</div>
+			<div class="col-2 text-right align-self-center">
+				<%= button_to 'Exit', sign_out_path, method: :delete, class: 'btn btn-danger btn-lg mx-auto' %>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+
+
+		<!-- Settings -->
+		<div class="col-lg-4 col-sm-12 my-4 px-1">
+			<div class="card text-center">
+				<div class="card-body py-4 my-2">
+					<h2 class="card-title display-4 my-2">Settings</h2>
+					</br>
+					<div class="p-2 mx-auto align-items-center text-center" style="border: 2px solid grey; width:10rem; height:10rem; border-radius: 50%; transform: rotate(40deg)">
+						<i class="fas fa-cogs py-3 m-3" style="font-size:4.5rem; height:100%"></i>
+					</div>
+					</br>
+		        	<div class="pt-3">
+			        	<h5>Automatic Feeding</h5>
+			        	<label class="switch">
+						  <input type="checkbox" <%= ['','checked'].sample %> id="toggleFeeding">
+						  <span class="slider round"></span>
+						</label>
+		        	</div>
+		        	<hr class="px-5">
+		        	<div class="pt-3">
+			        	<h5>Cleaning Reminder</h5>
+			        	<p class="small text-muted px-5"> Woofles will remind you to clean the feeder once a week</p>
+
+			        	<label class="switch">
+						  <input type="checkbox" <%= Feeding.first.notification == true ? ('checked') : ('') %> id="toggleFeeding">
+						  <span class="slider round"></span>
+						</label>
+		        	</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Report -->
+		<div class="col-lg-4 col-sm-12 my-4 px-1">
+			<div class="card text-center">
+				<div class="card-body py-4 my-2">
+					<h2 class="card-title display-4 my-2">Overview</h2>
+					</br>
+					<div class="p-2 mx-auto align-items-center text-center" style="border: 2px solid grey; width:10rem; height:10rem; border-radius: 50%; transform: rotate(20deg)">
+						<i class="fas fa-clipboard-list py-2 m-3" style="font-size:5rem; height:100%"></i>
+					</div>
+					</br>
+		        	<h5> Feeding time: <%= FeedingTime.first.feeding_time %></h5>
+		        	<h5> Feeding time: <%= FeedingTime.second.feeding_time %></h5>
+		        	<h5> Feeding time: <%= FeedingTime.third.feeding_time %></h5>
+		        	<h5> Feeding duration: <%= Feeding.first.feeding_duration%> seconds</h5>
+					<%= render partial: 'feedings/edit' %>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Manual Feeding -->
+		<div class="col-lg-4 col-sm-12 my-4 px-1">
+			<div class="card text-center">
+				<div class="card-body py-4 my-2">
+					<h2 class="card-title display-4 my-2">Feed</h2>
+					</br>
+					<div class="p-2 mx-auto align-items-center text-center" style="border: 2px solid grey; width:10rem; height:10rem; border-radius: 50%; transform: rotate(40deg)">
+						<i class="fas fa-bone py-4 m-3" style="font-size:4rem; height:100%"></i>
+					</div>
+					</br>
+					<h5 class="p-3">How much would you like to feed <%= Feeding.first.pet_name %>?</h5>
+					</br>
+					<form>
+						<select class="custom-select" id="inlineFormCustomSelect">
+							<option selected>Valve opening duration (seconds)</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+						</select>
+						</br>
+						</br>
+						<div class="submit-field my-2">
+							<button class="btn btn-primary" name="button" type="submit">Feed <%= Feeding.first.pet_name %> </button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

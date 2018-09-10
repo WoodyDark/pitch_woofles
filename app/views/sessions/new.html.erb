@@ -1,6 +1,65 @@
-<div id="clearance" class="sign-in">
-  <h2><%= t(".title") %></h2>
+<div class="container-fluid">
+	<div class="row" style="height:3vh"></div>
+	<div class="row justify-content-center">
+		<div class="col-lg-4 col-md-12 text-center">
+			<div class="card p-4">
+				
+				<%= image_tag ("logo.png"), class: 'mx-auto', alt:'Woofles - Smart Pet Feeder', title: 'WOOFLES' %>
+				<h1 class="card-title">WOOFLES</h1>
+				<h2>Smart Pet Feeder</h2>
 
-  <%= render partial: '/sessions/form' %>
+			    <div id="flash">
+				        <div class="flash">
+					      <% flash.each do %>
+				        	<p class="text-danger m-0">Wrong PIN</p>
+					      <% end %>
+				        </div>
+			    </div>
 
+				<div class="card-body">		
+					<div id="clearance" class="sign-in">
+					  <p>Enter your PIN</p>
+
+					  	<%= form_for :session, url: session_path do |form| %>
+						  <%= form.text_field :email, type: 'hidden', value: 'owner@example.com'%>
+						  <div class="password-field">
+						    <%= form.password_field :password, class: 'form-control', id: 'pin-field' %>
+						  </div>
+						  </br>
+						  <div class="container text-center">
+						  	<div class="row">
+							  <div id="1" class="btn btn-dark m-1 display-4 mx-auto" style="width:30%; height:100%">1</div>
+							  <div id="2" class="btn btn-dark m-1 display-4 mx-auto" style="width:30%; height:100%">2</div>
+							  <div id="3" class="btn btn-dark m-1 display-4 mx-auto" style="width:30%; height:100%">3</div>
+						  	</div>
+						  	<div class="row">
+							  <div id="4" class="btn btn-dark m-1 display-4 mx-auto" style="width:30%; height:100%">4</div>
+							  <div id="5" class="btn btn-dark m-1 display-4 mx-auto" style="width:30%; height:100%">5</div>
+							  <div id="6" class="btn btn-dark m-1 display-4 mx-auto" style="width:30%; height:100%">6</div>
+							</div>
+							<div class="row">
+							  <div id="7" class="btn btn-dark m-1 display-4 mx-auto" style="width:30%; height:100%">7</div>
+							  <div id="8" class="btn btn-dark m-1 display-4 mx-auto" style="width:30%; height:100%">8</div>
+							  <div id="9" class="btn btn-dark m-1 display-4 mx-auto" style="width:30%; height:100%">9</div>
+							</div>
+							<div class="row">
+							  <div id='clear' class="btn btn-warning m-1 display-4 mx-auto" style="width:30%; height:100%">CLEAR</div>
+							  <div id='0' class="btn btn-dark m-1 display-4 mx-auto" style="width:30%; height:100%">0</div>
+					    	  <%= form.submit 'ENTER', :class => 'btn btn-success m-1 display-4 mx-auto', :style => "width:30%; height:100%" %>
+							</div>
+						  </div>
+						  <div class="row" style="height:5vh"></div>
+						  <p>Have trouble accessing your Woofles? Email us at <a href="mailto:support@woofles.com">support@woofles.com</a></p>
+						  <!-- <div class="other-links">
+						    <% if Clearance.configuration.allow_sign_up? %>
+						      <%= link_to t(".sign_up"), sign_up_path %>
+						    <% end %>
+						    <%= link_to t(".forgot_password"), new_password_path %>
+						  </div> -->
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

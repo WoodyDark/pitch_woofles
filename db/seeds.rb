@@ -7,30 +7,67 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+
+
+
 # Seed Users
 user = {}
-user['password'] = 'asdf'
 
 ActiveRecord::Base.transaction do
-  2.times do 
-    user['user_name'] = Faker::Name.first_name 
-    user['pet_name'] = Faker::Dog.name
-    user['email'] = Faker::Internet.email
-    User.create(user)
-  end
+  user['email'] = 'owner@example.com'
+  user['password'] = '2345'
+  User.create(user)
 end 
 
-# Seed Feeding Schedules
-umails = []
-User.all.each { |u| umails << u.email }
-state = ["true", "false"]
+
+
+# Seed Feedings
 feeding = {}
+
 ActiveRecord::Base.transaction do
-  3.times do 
-  	feeding['feeding_time'] = '08:00:00'
-  	feeding['feeding_duration'] = rand(5..11)
-  	feeding['email'] = umails
-  	feeding['email_opt_out'] = state.sample
-  	Feeding.create(feeding)
-  end
+  feeding['pet_name'] = 'Molly'
+  feeding['pet_birthday'] = '21/11/1995'
+  feeding['cleaning_day'] = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].sample
+  feeding['cleaning_time'] = '10:00:00'
+  feeding['feeding_duration'] = [3,4,5,6,7,8].sample
+  feeding['automated_feeding']= true
+  feeding['notification']= true
+  Feeding.create(feeding)
+end 
+
+
+
+# Email Seeding
+email = {}
+email2 = {}
+
+ActiveRecord::Base.transaction do
+  email['email']='pop@corn.com'
+  email['feeding_id']=1
+  Email.create(email)
+
+  email2['email']='testy@test.com'
+  email2['feeding_id']=1
+  Email.create(email2)
+end 
+
+
+
+# Feeding Times
+time = {}
+time2 = {}
+time3 = {}
+
+ActiveRecord::Base.transaction do
+  time['feeding_time']='10:00:00'
+  time['feeding_id']=1
+  FeedingTime.create(time)
+
+  time2['feeding_time']='15:00:00'
+  time2['feeding_id']=1
+  FeedingTime.create(time2)
+
+  time3['feeding_time']='20:00:00'
+  time3['feeding_id']=1
+  FeedingTime.create(time3)
 end

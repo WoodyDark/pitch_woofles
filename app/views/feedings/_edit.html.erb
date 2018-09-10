@@ -1,0 +1,35 @@
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-modal-lg">Edit  <i class="fas fa-edit"></i></button>
+
+<div class="modal fade bd-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<!-- Modal content -->
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<%= form_with model: @feeding, url: feedings_path, method: :patch do |f| %>
+				<div class="form-field">
+					<%= f.label :Email %>
+				  	<%= f.text_field :email, type: 'email'%>
+				</div>
+
+				<div class="form-field">
+					<%= f.label :dispensation_seconds %>
+				  	<%= f.select :feeding_duration, 1..15 %>
+				</div>
+
+				<div class="form-field">
+					<%= f.label :feeding_time %>
+				  	<%= f.text_field :feeding_time %>
+				</div>
+
+				<div class="form-field">
+				  	<%= f.check_box :email_opt_out %>
+				  	<%= f.label :I_do_not_want_feeding_email_notifications %>
+				</div>
+
+				<div class="submit-field">
+				  <%= f.button :submit %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,5 +1,12 @@
 class FeedingsController < ApplicationController
 
+	def index
+		if signed_in? 
+		else
+			redirect_to sign_in_path
+		end
+	end
+
 
 	def new
 		@feeding = Feeding.new
@@ -26,6 +33,7 @@ class FeedingsController < ApplicationController
 		@feeding.email_opt_out = params[:email_opt_out]
 
 		if @feeding.save
+			%x(whenever --update-crontab)
 			redirect_to root_path
 		else
 			redirect_to edit_feedings_path

@@ -25,6 +25,10 @@ every 1.minute do # 1.minute 1.day 1.week 1.month 1.year is also supported
   command "echo 'Cron is running now!'"
 end
 
+every :sunday, at: '12pm' do # Use any day of the week or :weekend, :weekday
+  runner "Task.do_something_great"
+end
+
 # every 1.day, at: '4:30 am' do
 #   runner "MyModel.task_to_run_at_four_thirty_in_the_morning"
 # end
@@ -37,9 +41,6 @@ end
 #   runner "SomeModel.ladeeda"
 # end
 
-# every :sunday, at: '12pm' do # Use any day of the week or :weekend, :weekday
-#   runner "Task.do_something_great"
-# end
 
 # every '0 0 27-31 * *' do
 #   command "echo 'you can use raw cron syntax too'"
