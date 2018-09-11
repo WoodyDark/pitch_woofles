@@ -1,4 +1,15 @@
+require 'byebug'
 class FeedingsController < ApplicationController
+
+
+
+	def whenever_friendly!(input)
+		if input != 'None'
+			input[-3] += ' '
+			input.gsub!(/\./,':')
+		end
+	end
+
 
 	def index
 		if signed_in? 
@@ -27,9 +38,63 @@ class FeedingsController < ApplicationController
 	end
 
 	def update
+
+		@time_conversion = {
+		'None' => nil,
+		'12.00am' => (946684800+1800*0),
+		'12.30am' => (946684800+1800*1),
+		'1.00am' => (946684800+1800*2),
+		'1.30am' => (946684800+1800*3),
+		'2.00am' => (946684800+1800*4),
+		'2.30am' => (946684800+1800*5),
+		'3.00am' => (946684800+1800*6),
+		'3.30am' => (946684800+1800*7),
+		'4.00am' => (946684800+1800*8),
+		'4.30am' => (946684800+1800*9),
+		'5.00am' => (946684800+1800*10),
+		'5.30am' => (946684800+1800*11),
+		'6.00am' => (946684800+1800*12),
+		'6.30am' => (946684800+1800*13),
+		'7.00am' => (946684800+1800*14),
+		'7.30am' => (946684800+1800*15),
+		'8.00am' => (946684800+1800*16),
+		'8.30am' => (946684800+1800*17),
+		'9.00am' => (946684800+1800*18),
+		'9.30am' => (946684800+1800*19),
+		'10.00am' => (946684800+1800*20),
+		'10.30am' => (946684800+1800*21),
+		'11.00am' => (946684800+1800*22),
+		'11.30am' => (946684800+1800*23),
+		'12.00pm' => (946684800+1800*24),
+		'12.30pm' => (946684800+1800*25),
+		'1.00pm' => (946684800+1800*26),
+		'1.30pm' => (946684800+1800*27),
+		'2.00pm' => (946684800+1800*28),
+		'2.30pm' => (946684800+1800*29),
+		'3.00pm' => (946684800+1800*30),
+		'3.30pm' => (946684800+1800*31),
+		'4.00pm' => (946684800+1800*32),
+		'4.30pm' => (946684800+1800*33),
+		'5.00pm' => (946684800+1800*34),
+		'5.30pm' => (946684800+1800*35),
+		'6.00pm' => (946684800+1800*36),
+		'6.30pm' => (946684800+1800*37),
+		'7.00pm' => (946684800+1800*38),
+		'7.30pm' => (946684800+1800*39),
+		'8.00pm' => (946684800+1800*40),
+		'8.30pm' => (946684800+1800*41),
+		'9.00pm' => (946684800+1800*42),
+		'9.30pm' => (946684800+1800*43),
+		'10.00pm' => (946684800+1800*44),
+		'10.30pm' => (946684800+1800*45),
+		'11.00pm' => (946684800+1800*46),
+		'11.30pm' => (946684800+1800*47)}
 		@feed_duration = Feeding.first
 		@email = Email.first
 		@feed_time = FeedingTime.first
+
+		@cron_feeding_times = []
+
 
 		@feed_duration.feeding_duration = params[:feeding_duration]
 
@@ -39,17 +104,45 @@ class FeedingsController < ApplicationController
 		@email.email4 = params[:email4]
 		@email.email5 = params[:email5]
 
-		@feed_time.feeding_time_1 = params[:feeding_time_1]
-		@feed_time.feeding_time_2 = params[:feeding_time_2]
-		@feed_time.feeding_time_3 = params[:feeding_time_3]
-		@feed_time.feeding_time_4 = params[:feeding_time_4]
+		params[:feeding_time_1] == 'None' ? (@feed_time.feeding_time_1 = nil) : (@feed_time.feeding_time_1 = Time.at(@time_conversion[params[:feeding_time_1]]))
+		params[:feeding_time_2] == 'None' ? (@feed_time.feeding_time_2 = nil) : (@feed_time.feeding_time_2 = Time.at(@time_conversion[params[:feeding_time_2]]))
+		params[:feeding_time_3] == 'None' ? (@feed_time.feeding_time_3 = nil) : (@feed_time.feeding_time_3 = Time.at(@time_conversion[params[:feeding_time_3]]))
+		params[:feeding_time_4] == 'None' ? (@feed_time.feeding_time_4 = nil) : (@feed_time.feeding_time_4 = Time.at(@time_conversion[params[:feeding_time_4]]))
+		
 
+		if params[:feeding_time_1] != 'None'
+			@cron_feeding_times.push(whenever_friendly!(params[:feeding_time_1]))
+		end
+
+		if params[:feeding_time_2] != 'None'
+			@cron_feeding_times.push(whenever_friendly!(params[:feeding_time_2]))
+		end
+
+		if params[:feeding_time_3] != 'None'
+			@cron_feeding_times.push(whenever_friendly!(params[:feeding_time_3]))
+		end
+
+		if params[:feeding_time_4] != 'None'
+			@cron_feeding_times.push(whenever_friendly!(params[:feeding_time_4]))
+		end
+
+		out_file = File.open("config/schedule.rb",'w')
+		out_file.puts 'set :output, "#{path}/log/cron.log"'
+		out_file.puts ""
+		out_file.puts "every 1.day, at: #{@cron_feeding_times} do"
+		out_file.puts '  command "python #{path}/../feed.py"'
+		out_file.puts "end"
+		out_file.puts ""
+		out_file.puts "every :sunday, at: '12pm' do"
+		out_file.puts '  runner "Task.do_something_great"'
+		out_file.puts "end"
+		out_file.close
 
 		if @feed_time.save && @feed_duration.save && @email.save
-			%x(whenever --update-crontab)
+			system('whenever --update-crontab')
 			redirect_to root_path
 		else
-			redirect_to edit_feedings_path
+			redirect_to root_path
 		end
 	end
 
