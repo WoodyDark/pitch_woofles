@@ -1,3 +1,31 @@
+<% selection = ['None',
+	'12.00am','12.30am',
+	'1.00am','1.30am',
+	'2.00am','2.30am',
+	'3.00am','3.30am',
+	'4.00am','4.30am',
+	'5.00am','5.30am',
+	'6.00am','6.30am',
+	'7.00am','7.30am',
+	'8.00am','8.30am',
+	'9.00am','9.30am',
+	'10.00am','10.30am',
+	'11.00am','11.30am',
+	'12.00pm','12.30pm',
+	'1.00pm','1.30pm',
+	'2.00pm','2.30pm',
+	'3.00pm','3.30pm',
+	'4.00pm','4.30pm',
+	'5.00pm','5.30pm',
+	'6.00pm','6.30pm',
+	'7.00pm','7.30pm',
+	'8.00pm','8.30pm',
+	'9.00pm','9.30pm',
+	'10.00pm','10.00pm',
+	'11.00pm','11.30pm'] %>
+
+
+
 <!-- Large modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-modal-lg">Edit  <i class="fas fa-edit"></i></button>
 
@@ -5,31 +33,92 @@
 	<!-- Modal content -->
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<%= form_with model: @feeding, url: feedings_path, method: :patch do |f| %>
-				<div class="form-field">
-					<%= f.label :Email %>
-				  	<%= f.text_field :email, type: 'email'%>
-				</div>
+			<div class="card-body">
+				<h3 class="display-4 py-3">Settings</h3>
+				<%= form_with model: @feeding, url: feedings_path, method: :patch do |f| %>
+					
+					<hr>
+					<h4>Notification</h4>
+					<div class="px-5 mx-auto" style="width:90%">
+						<p class="text-muted small">Woofles will send an email notification to the following addresses whenever automatic feeding is triggered, or when the it's time for your weekly cleaning</p>
+					</div>
+					<div class="form-row px-5 my-2">
+						<%= f.label :Email, class: 'col-3 align-self-center' %>
+					  	<%= f.text_field :email, type: 'email', class: 'form-control col-9' %>
+					</div>
 
-				<div class="form-field">
-					<%= f.label :dispensation_seconds %>
-				  	<%= f.select :feeding_duration, 1..15 %>
-				</div>
+					<div class="form-row px-5 my-2">
+						<%= f.label :Email, class: 'col-3 align-self-center' %>
+					  	<%= f.text_field :email, type: 'email', class: 'form-control col-9' %>
+					</div>
 
-				<div class="form-field">
-					<%= f.label :feeding_time %>
-				  	<%= f.text_field :feeding_time %>
-				</div>
+					<div class="form-row px-5 my-2">
+						<%= f.label :Email, class: 'col-3 align-self-center' %>
+					  	<%= f.text_field :email, type: 'email', class: 'form-control col-9' %>
+					</div>
 
-				<div class="form-field">
-				  	<%= f.check_box :email_opt_out %>
-				  	<%= f.label :I_do_not_want_feeding_email_notifications %>
-				</div>
+					<div class="form-row px-5 my-2">
+						<%= f.label :Email, class: 'col-3 align-self-center' %>
+					  	<%= f.text_field :email, type: 'email', class: 'form-control col-9' %>
+					</div>
 
-				<div class="submit-field">
-				  <%= f.button :submit %>
-				</div>
-			<% end %>
+					<div class="form-row px-5 my-2">
+						<%= f.label :Email, class: 'col-3 align-self-center' %>
+					  	<%= f.text_field :email, type: 'email', class: 'form-control col-9' %>
+					</div>
+
+					<hr class="my-5">
+
+					<h4>Feeder Settings</h4>
+					<p class="text-muted small">Woofles will spin the valve based on the number of seconds</p>
+
+					<div class="form-row px-5 my-2">
+						<%= f.label :Feed_Amount, class: 'col-3 align-self-center' %>
+						<select name="feeding_time" id="feeding_time" class="form-control col-9">
+					  		<%= options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]) %>
+					  	</select>
+					</div>
+
+					<hr class="my-5">
+
+					<h4>Feeding Time</h4>
+					<p class="text-muted small">Change the default behavior of the Woofles</p>
+
+					<div class="form-row px-5 my-2">
+						<%= f.label :feeding_time_1, class: 'col-3 align-self-center' %>
+						<select name="feeding_time" id="feeding_time" class="form-control col-9">
+					  		<%= options_for_select(selection) %>
+					  	</select>
+					</div>
+
+					<div class="form-row px-5 my-2">
+						<%= f.label :feeding_time_2, class: 'col-3 align-self-center' %>
+						<select name="feeding_time" id="feeding_time" class="form-control col-9">
+					  		<%= options_for_select(selection) %>
+					  	</select>
+					</div>
+
+					<div class="form-row px-5 my-2">
+						<%= f.label :feeding_time_3, class: 'col-3 align-self-center' %>
+						<select name="feeding_time" id="feeding_time" class="form-control col-9">
+					  		<%= options_for_select(selection) %>
+					  	</select>
+					</div>
+
+					<div class="form-row px-5 my-2">
+						<%= f.label :feeding_time_4, class: 'col-3 align-self-center' %>
+						<select name="feeding_time" id="feeding_time" class="form-control col-9">
+					  		<%= options_for_select(selection) %>
+					  	</select>
+					</div>
+
+					<hr>
+
+					<div class="submit-field">
+					  <%= f.submit "Save Changes", class: 'btn btn-primary' %>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

@@ -3,6 +3,7 @@ class FeedingsController < ApplicationController
 	def index
 		if signed_in? 
 		else
+			@time_selection = []
 			redirect_to sign_in_path
 		end
 	end
