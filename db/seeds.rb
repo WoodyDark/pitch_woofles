@@ -39,35 +39,24 @@ end
 
 # Email Seeding
 email = {}
-email2 = {}
 
 ActiveRecord::Base.transaction do
-  email['email']='pop@corn.com'
+  email['email1']='pop@corn.com'
+  email['email2']='testy@test.com'
   email['feeding_id']=1
   Email.create(email)
 
-  email2['email']='testy@test.com'
-  email2['feeding_id']=1
-  Email.create(email2)
 end 
 
 
 
 # Feeding Times
 time = {}
-time2 = {}
-time3 = {}
 
 ActiveRecord::Base.transaction do
-  time['feeding_time']='10:00:00'
+  time['feeding_time_1']='10:00:00'
+  time['feeding_time_2']='15:00:00'
+  time['feeding_time_3']='20:00:00'
   time['feeding_id']=1
   FeedingTime.create(time)
-
-  time2['feeding_time']='15:00:00'
-  time2['feeding_id']=1
-  FeedingTime.create(time2)
-
-  time3['feeding_time']='20:00:00'
-  time3['feeding_id']=1
-  FeedingTime.create(time3)
 end

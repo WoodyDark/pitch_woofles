@@ -59,14 +59,14 @@
 						<i class="fas fa-clipboard-list py-2 m-3" style="font-size:5rem; height:100%"></i>
 					</div>
 					</br>
-		        	<h5 class="pt-3"><%= Feeding.first.pet_name %> was last fed at <%= FeedingTime.first.feeding_time.to_s[11..15] %></h5>
+		        	<h5 class="pt-3"><%= Feeding.first.pet_name %> was last fed at <%= FeedingTime.first.feeding_time_1.to_s[11..15] %></h5>
 
 		        	<hr class="my-3">
 
 		        	<h5><%= Feeding.first.pet_name %>'s feeding time</h5>
-		        	<p class="d-inline mx-3"><%= FeedingTime.first.feeding_time.to_s[11..15] %></p>
-		        	<p class="d-inline mx-3"><%= FeedingTime.second.feeding_time.to_s[11..15] %></p>
-		        	<p class="d-inline mx-3"><%= FeedingTime.third.feeding_time.to_s[11..15] %></p>
+		        	<p class="d-inline mx-3"><%= FeedingTime.first.feeding_time_1.to_s[11..15] %></p>
+		        	<p class="d-inline mx-3"><%= FeedingTime.first.feeding_time_2.to_s[11..15] %></p>
+		        	<p class="d-inline mx-3"><%= FeedingTime.first.feeding_time_3.to_s[11..15] %></p>
 
 		        	<hr class="my-3">
 

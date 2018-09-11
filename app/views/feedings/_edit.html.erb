@@ -21,7 +21,7 @@
 	'7.00pm','7.30pm',
 	'8.00pm','8.30pm',
 	'9.00pm','9.30pm',
-	'10.00pm','10.00pm',
+	'10.00pm','10.30pm',
 	'11.00pm','11.30pm'] %>
 
 
@@ -43,28 +43,28 @@
 						<p class="text-muted small">Woofles will send an email notification to the following addresses whenever automatic feeding is triggered, or when the it's time for your weekly cleaning</p>
 					</div>
 					<div class="form-row px-5 my-2">
-						<%= f.label :Email, class: 'col-3 align-self-center' %>
-					  	<%= f.text_field :email, type: 'email', class: 'form-control col-9' %>
+						<%= f.label :Primary_email, class: 'col-3 align-self-center' %>
+					  	<%= f.text_field :email1, type: 'email', class: 'form-control col-9' %>
 					</div>
 
 					<div class="form-row px-5 my-2">
-						<%= f.label :Email, class: 'col-3 align-self-center' %>
-					  	<%= f.text_field :email, type: 'email', class: 'form-control col-9' %>
+						<%= f.label :Secondary_email, class: 'col-3 align-self-center' %>
+					  	<%= f.text_field :email2, type: 'email', class: 'form-control col-9' %>
 					</div>
 
 					<div class="form-row px-5 my-2">
-						<%= f.label :Email, class: 'col-3 align-self-center' %>
-					  	<%= f.text_field :email, type: 'email', class: 'form-control col-9' %>
+						<%= f.label :Tertiary_email, class: 'col-3 align-self-center' %>
+					  	<%= f.text_field :email3, type: 'email', class: 'form-control col-9' %>
 					</div>
 
 					<div class="form-row px-5 my-2">
-						<%= f.label :Email, class: 'col-3 align-self-center' %>
-					  	<%= f.text_field :email, type: 'email', class: 'form-control col-9' %>
+						<%= f.label :Additional_email, class: 'col-3 align-self-center' %>
+					  	<%= f.text_field :email4, type: 'email', class: 'form-control col-9' %>
 					</div>
 
 					<div class="form-row px-5 my-2">
-						<%= f.label :Email, class: 'col-3 align-self-center' %>
-					  	<%= f.text_field :email, type: 'email', class: 'form-control col-9' %>
+						<%= f.label :Additional_email, class: 'col-3 align-self-center' %>
+					  	<%= f.text_field :email5, type: 'email', class: 'form-control col-9' %>
 					</div>
 
 					<hr class="my-5">
@@ -74,7 +74,7 @@
 
 					<div class="form-row px-5 my-2">
 						<%= f.label :Feed_Amount, class: 'col-3 align-self-center' %>
-						<select name="feeding_time" id="feeding_time" class="form-control col-9">
+						<select name="feeding_duration" id="feeding_time" class="form-control col-9">
 					  		<%= options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]) %>
 					  	</select>
 					</div>
@@ -86,28 +86,28 @@
 
 					<div class="form-row px-5 my-2">
 						<%= f.label :feeding_time_1, class: 'col-3 align-self-center' %>
-						<select name="feeding_time" id="feeding_time" class="form-control col-9">
+						<select name="feeding_time_1" id="feeding_time" class="form-control col-9">
 					  		<%= options_for_select(selection) %>
 					  	</select>
 					</div>
 
 					<div class="form-row px-5 my-2">
 						<%= f.label :feeding_time_2, class: 'col-3 align-self-center' %>
-						<select name="feeding_time" id="feeding_time" class="form-control col-9">
+						<select name="feeding_time_2" id="feeding_time" class="form-control col-9">
 					  		<%= options_for_select(selection) %>
 					  	</select>
 					</div>
 
 					<div class="form-row px-5 my-2">
 						<%= f.label :feeding_time_3, class: 'col-3 align-self-center' %>
-						<select name="feeding_time" id="feeding_time" class="form-control col-9">
+						<select name="feeding_time_3" id="feeding_time" class="form-control col-9">
 					  		<%= options_for_select(selection) %>
 					  	</select>
 					</div>
 
 					<div class="form-row px-5 my-2">
 						<%= f.label :feeding_time_4, class: 'col-3 align-self-center' %>
-						<select name="feeding_time" id="feeding_time" class="form-control col-9">
+						<select name="feeding_time_4" id="feeding_time" class="form-control col-9">
 					  		<%= options_for_select(selection) %>
 					  	</select>
 					</div>
@@ -116,7 +116,9 @@
 
 					<div class="submit-field">
 					  <%= f.submit "Save Changes", class: 'btn btn-primary' %>
+					  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 					</div>
+
 				<% end %>
 			</div>
 		</div>

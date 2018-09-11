@@ -16,7 +16,11 @@ ActiveRecord::Schema.define(version: 2018_09_10_163500) do
   enable_extension "plpgsql"
 
   create_table "emails", force: :cascade do |t|
-    t.string "email"
+    t.string "email1"
+    t.string "email2"
+    t.string "email3"
+    t.string "email4"
+    t.string "email5"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "feeding_id"
@@ -24,7 +28,10 @@ ActiveRecord::Schema.define(version: 2018_09_10_163500) do
   end
 
   create_table "feeding_times", force: :cascade do |t|
-    t.time "feeding_time"
+    t.time "feeding_time_1"
+    t.time "feeding_time_2"
+    t.time "feeding_time_3"
+    t.time "feeding_time_4"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "feeding_id"
