@@ -2,7 +2,6 @@ require 'byebug'
 class FeedingsController < ApplicationController
 
 
-
 	def whenever_friendly!(input)
 		if input != 'None'
 			input[-3] += ' '
@@ -148,6 +147,15 @@ class FeedingsController < ApplicationController
 
 	def destroy	
 	end
+
+
+	def set_duration
+		@feeding = Feeding.new(feeding_duration: params[:feeding_duration])
+		feed
+		@feeding.destroy
+	end
+
+
 
 	def feed 
 		pyname = 'feed.py'

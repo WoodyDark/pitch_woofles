@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'feedings/index' => 'feedings#index'
   get '/session' => 'feedings#index'
 
+  post 'feedings' => 'feedings#set_duration', as: 'feedings_duration'
+
   root 'feedings#index'
 
   resources :users, only: [:create] do

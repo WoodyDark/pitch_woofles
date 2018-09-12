@@ -88,10 +88,16 @@
 						<i class="fas fa-bone py-4 m-3" style="font-size:4rem; height:100%"></i>
 					</div>
 					</br>
-					<h5 class="p-3">How much would you like to feed <%= Feeding.first.pet_name %>?</h5>
-					</br>
+
+
 					<form class="px-4">
-						<select class="custom-select" id="inlineFormCustomSelect">
+
+					<%= form_with model: @feeding, url: feedings_duration_path, method: :post do |f| %>
+
+						<h5 class="p-3">How much would you like to feed <%= Feeding.first.pet_name %>?</h5>
+						</br>
+
+						<select class="custom-select" id="inlineFormCustomSelect" name="feeding_duration">
 							<option selected>Valve opening duration (seconds)</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -102,10 +108,13 @@
 						</select>
 						</br>
 						</br>
-						<div class="submit-field my-2">
-							<button class="btn btn-primary" name="button" type="submit">Feed <%= Feeding.first.pet_name %> </button>
+
+						<div class="submit-field">
+							<%= f.submit "Feed #{Feeding.first.pet_name}", class: 'btn btn-primary' %>
 						</div>
+					<% end %>
 					</form>
+
 				</div>
 			</div>
 		</div>
