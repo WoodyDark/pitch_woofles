@@ -97,6 +97,37 @@ class FeedingsController < ApplicationController
 
 		@feed_duration.feeding_duration = params[:feeding_duration]
 
+		feed_file = File.open("../feed.py",'w')
+		feed_file.puts 'import RPi.GPIO as GPIO'
+		feed_file.puts 'import time'
+		feed_file.puts 'import logging'
+		feed_file.puts 'import datetime'
+		feed_file.puts 'GPIO.setmode(GPIO.BCM)'
+		feed_file.puts 'GPIO.setwarnings(False)'
+		feed_file.puts 'GPIO.setup(23,GPIO.OUT)'
+		feed_file.puts 'GPIO.setup(18,GPIO.OUT)'
+		feed_file.puts 'GPIO.setup(26,GPIO.OUT)'
+		feed_file.puts '#Power on motor'
+		feed_file.puts 'GPIO.output(23,GPIO.HIGH)'
+		feed_file.puts "time.sleep(#{@feeding_duration.feeding_duration})"
+		feed_file.puts 'GPIO.output(23,GPIO.LOW)'
+		feed_file.puts '# 3 Beeps'
+		feed_file.puts 'GPIO.output(26,GPIO.HIGH)'
+		feed_file.puts 'time.sleep(0.2)'
+		feed_file.puts 'GPIO.output(26,GPIO.LOW)'
+		feed_file.puts 'time.sleep(0.2)'
+		feed_file.puts 'GPIO.output(26,GPIO.HIGH)'
+		feed_file.puts 'time.sleep(0.2)'
+		feed_file.puts 'GPIO.output(26,GPIO.LOW)'
+		feed_file.puts 'time.sleep(0.2)'
+		feed_file.puts 'GPIO.output(26,GPIO.HIGH)'
+		feed_file.puts 'time.sleep(0.2)'
+		feed_file.puts 'GPIO.output(26,GPIO.LOW)'
+		feed_file.puts 'time.sleep(0.2)'
+		feed_file.puts 'logging.basicConfig(filename="pitch_woofles/log/cron.log",level=logging.DEBUG)'
+		feed_file.puts 'logging.debug(datetime.datetime.now())'
+		feed_file.close
+
 		@email.email1 = params[:email1]
 		@email.email2 = params[:email2]
 		@email.email3 = params[:email3]
