@@ -151,14 +151,16 @@ class FeedingsController < ApplicationController
 
 
 	def feed_now
-		pyname = 'feed_now.py'
-		if system("python", pyname) 
+		if system("python feed_now.py #{params[:feeding_duration]}") 
 			if (Feeding.first.notification == true)
-				FeedingNotification.notify_owner(Feeding.first)
+				FeedingNotificationMailer.notify_owner(Feeding.first)
 			end
 		  	puts "feeding success!"
+		  	redirect_to root_path
 		else
-		  	ErrorNotification.notify_owner(Feeding.first)
+			puts "feeding failed"
+		  	ErrorNotificationMailer.notify_owner(Feeding.first)
+		  	redirect_to root_path
 		end
 	end
 
@@ -168,11 +170,12 @@ class FeedingsController < ApplicationController
 		pyname = 'feed.py'
 		if system("python", pyname) 
 			if (Feeding.first.notification == true)
-				FeedingNotification.notify_owner(Feeding.first)
+				FeedingNotificationMailer.notify_owner(Feeding.first)
 			end
 		  	puts "feeding success!"
 		else
-		  	ErrorNotification.notify_owner(Feeding.first)
+			puts "feeding failed"
+		  	ErrorNotificationMailer.notify_owner(Feeding.first)
 		end
 	end
 
