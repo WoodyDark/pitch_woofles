@@ -130,6 +130,7 @@ class FeedingsController < ApplicationController
 		out_file.puts ""
 		out_file.puts "every 1.day, at: #{@cron_feeding_times} do"
 		out_file.puts '  command "python #{path}/../feed.py"'
+		out_file.puts '  command "echo #{Time.now}"'
 		out_file.puts "end"
 		out_file.puts ""
 		out_file.puts "every :sunday, at: '12pm' do"
