@@ -27,7 +27,7 @@ feeding = {}
 ActiveRecord::Base.transaction do
   feeding['pet_name'] = 'Molly'
   feeding['pet_birthday'] = '21/11/1995'
-  feeding['cleaning_day'] = 'sunday']
+  feeding['cleaning_day'] = 'sunday'
   feeding['cleaning_time'] = '10:00:00'
   feeding['feeding_duration'] = [3,4,5,6,7,8].sample
   feeding['automated_feeding']= true
