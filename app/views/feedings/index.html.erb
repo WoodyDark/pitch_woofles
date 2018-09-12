@@ -64,9 +64,10 @@
 		        	<hr class="my-3">
 
 		        	<h5><%= Feeding.first.pet_name %>'s feeding time</h5>
-		        	<p class="d-inline mx-3"><%= FeedingTime.first.feeding_time_1.to_s[11..15] %></p>
-		        	<p class="d-inline mx-3"><%= FeedingTime.first.feeding_time_2.to_s[11..15] %></p>
-		        	<p class="d-inline mx-3"><%= FeedingTime.first.feeding_time_3.to_s[11..15] %></p>
+		        	<%= FeedingTime.first.feeding_time_1.to_s[11..15] == nil ? () : raw("<p class='d-inline mx-3'>#{FeedingTime.first.feeding_time_1.to_s[11..15]}</p>") %>
+		        	<%= FeedingTime.first.feeding_time_2.to_s[11..15] == nil ? () : raw("<p class='d-inline mx-3'>#{FeedingTime.first.feeding_time_2.to_s[11..15]}</p>") %>
+		        	<%= FeedingTime.first.feeding_time_3.to_s[11..15] == nil ? () : raw("<p class='d-inline mx-3'>#{FeedingTime.first.feeding_time_3.to_s[11..15]}</p>") %>
+		        	<%= FeedingTime.first.feeding_time_4.to_s[11..15] == nil ? () : raw("<p class='d-inline mx-3'>#{FeedingTime.first.feeding_time_4.to_s[11..15]}</p>") %>
 
 		        	<hr class="my-3">
 
@@ -92,13 +93,22 @@
 					</br>
 					<form class="px-4">
 						<select class="custom-select" id="inlineFormCustomSelect">
-							<option selected>Valve opening duration (seconds)</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
+							<option selected value="<%= Feeding.first.feeding_duration %>"><%= Feeding.first.feeding_duration %> seconds</option>
+							<option value="1">1 seconds</option>
+							<option value="2">2 seconds</option>
+							<option value="3">3 seconds</option>
+							<option value="4">4 seconds</option>
+							<option value="5">5 seconds</option>
+							<option value="6">6 seconds</option>
+							<option value="7">7 seconds</option>
+							<option value="8">8 seconds</option>
+							<option value="9">9 seconds</option>
+							<option value="10">10 seconds</option>
+							<option value="11">11 seconds</option>
+							<option value="12">12 seconds</option>
+							<option value="13">13 seconds</option>
+							<option value="14">14 seconds</option>
+							<option value="15">15 seconds</option>
 						</select>
 						</br>
 						</br>
