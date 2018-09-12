@@ -1,8 +1,8 @@
 
-<h4> Dear owner, </h4>
+<p> Dear <%= Feeding.first.pet_name %>'s owner, </p>
 
-<h4> We tried to feed your pet but failed. Please inspect the pet feeder and contact us; we will gladly assist you! We are sorry for any inconvenience caused.</h4> <br>
+<p> We tried to feed your pet at <strong><%= Time.now.to_formatted_s(:long_ordinal) %></strong> but have unfortunately failed. Please ensure the pet feeder is properly plugged in and contact us at support@woofles.com should you require further assistance in troubleshooting the petfeeder; we will gladly assist you! We are truly sorry for any inconvenience caused.</p> <br>
 
 
 <p> Sincerely, </p>
-<p> - Woofles </p>
+<p> Your paw-pals at Woofles </p>

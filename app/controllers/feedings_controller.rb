@@ -182,6 +182,7 @@ class FeedingsController < ApplicationController
 
 
 	def feed_now
+		FeedingNotificationMailer.notify_owner(Email.first).deliver
 		if system("python ../feed_now.py #{params[:feeding_duration]}") 
 			if (Feeding.first.notification == true)
 				FeedingNotificationMailer.notify_owner(Email.first).deliver
