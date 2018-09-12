@@ -94,7 +94,6 @@ class FeedingsController < ApplicationController
 
 		@cron_feeding_times = []
 
-
 		@feed_duration.feeding_duration = params[:feeding_duration]
 
 		feed_file = File.open("../feed.py",'w')
@@ -109,7 +108,7 @@ class FeedingsController < ApplicationController
 		feed_file.puts 'GPIO.setup(26,GPIO.OUT)'
 		feed_file.puts '#Power on motor'
 		feed_file.puts 'GPIO.output(23,GPIO.HIGH)'
-		feed_file.puts "time.sleep(#{@feeding_duration.feeding_duration})"
+		feed_file.puts "time.sleep(#{params[:feeding_duration]})"
 		feed_file.puts 'GPIO.output(23,GPIO.LOW)'
 		feed_file.puts '# 3 Beeps'
 		feed_file.puts 'GPIO.output(26,GPIO.HIGH)'
@@ -168,6 +167,7 @@ class FeedingsController < ApplicationController
 		out_file.puts '  runner "Task.do_something_great"'
 		out_file.puts "end"
 		out_file.close
+
 
 		if @feed_time.save && @feed_duration.save && @email.save
 			system('whenever --update-crontab')

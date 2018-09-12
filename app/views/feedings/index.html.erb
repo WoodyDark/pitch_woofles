@@ -1,3 +1,7 @@
+<% log_file = File.open("log/cron.log","r") %>
+	<% @updated_at = log_file.ctime %>
+<% log_file.close %>
+
 <div class="jumbotron py-3" style="background-color: black;">
 	<div class="container">
 		<div class="row">
@@ -59,7 +63,8 @@
 						<i class="fas fa-clipboard-list py-2 m-3" style="font-size:5rem; height:100%"></i>
 					</div>
 					</br>
-		        	<h5 class="pt-3"><%= Feeding.first.pet_name %> was last fed at <%= FeedingTime.first.feeding_time_1.to_s[11..15] %></h5>
+		        	<h5 class="pt-3"><%= Feeding.first.pet_name %> was last fed at</h5>
+		        	<h5><%= @updated_at.to_s[0..15] %></h5>
 
 		        	<hr class="my-3">
 
