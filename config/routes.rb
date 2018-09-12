@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'feedings/index' => 'feedings#index'
   get '/session' => 'feedings#index'
 
-  post 'feedings' => 'feedings#set_duration', as: 'feedings_duration'
+  post 'feedings' => 'feedings#feed_now', as: 'feed_now'
 
   root 'feedings#index'
 

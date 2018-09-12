@@ -149,10 +149,8 @@ class FeedingsController < ApplicationController
 	end
 
 
-	def set_duration
-		@feeding = Feeding.new(feeding_duration: params[:feeding_duration])
-		feed
-		@feeding.destroy
+	def feed_now
+		
 	end
 
 

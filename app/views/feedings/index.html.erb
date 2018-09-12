@@ -92,7 +92,7 @@
 
 
 					<form class="px-4">
-					<%= form_with model: @feeding, url: feedings_duration_path, method: :post do |f| %>
+					<%= form_with model: @feeding, url: feed_now_path, method: :post do |f| %>
 
 						<h5 class="p-3">How much would you like to feed <%= Feeding.first.pet_name %>?</h5>
 						</br>
