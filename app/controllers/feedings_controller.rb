@@ -150,7 +150,15 @@ class FeedingsController < ApplicationController
 
 
 	def feed_now
-		
+		pyname = 'feed_now.py'
+		if system("python", pyname) 
+			if (Feeding.first.notification == true)
+				FeedingNotification.notify_owner(Feeding.first)
+			end
+		  	puts "feeding success!"
+		else
+		  	ErrorNotification.notify_owner(Feeding.first)
+		end
 	end
 
 
@@ -158,7 +166,7 @@ class FeedingsController < ApplicationController
 	def feed 
 		pyname = 'feed.py'
 		if system("python", pyname) 
-			if (Feeding.first.email_opt_out != true)
+			if (Feeding.first.notification == true)
 				FeedingNotification.notify_owner(Feeding.first)
 			end
 		  	puts "feeding success!"
