@@ -165,7 +165,6 @@ class FeedingsController < ApplicationController
 	end
 
 
-
 	def feed 
 		pyname = 'feed.py'
 		if system("python", pyname) 
@@ -178,6 +177,8 @@ class FeedingsController < ApplicationController
 		  	ErrorNotificationMailer.notify_owner(Feeding.first)
 		end
 	end
+
+
 
 	private
 	  # Use callbacks to share common setup or constraints between actions.
