@@ -34,7 +34,7 @@
 		        	<div class="pt-3">
 			        	<h5>Automatic Feeding</h5>
 			        	<label class="switch">
-						  <input type="checkbox" <%= ['','checked'].sample %> id="toggleFeeding">
+						  <input type="checkbox" name="automated_feeding"<%= Feeding.first.automated_feeding == true ? ('checked') : ('') %> id="toggleFeeding">
 						  <span class="slider round"></span>
 						</label>
 		        	</div>
@@ -44,7 +44,7 @@
 			        	<p class="small text-muted px-5"> Woofles will remind you to clean the feeder once a week</p>
 
 			        	<label class="switch">
-						  <input type="checkbox" <%= Feeding.first.notification == true ? ('checked') : ('') %> id="toggleFeeding">
+						  <input type="checkbox" <%= Feeding.first.cleaning_day != '' ? ('checked') : ('') %> id="toggleFeeding">
 						  <span class="slider round"></span>
 						</label>
 		        	</div>
