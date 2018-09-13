@@ -38,6 +38,7 @@
 								  <span class="slider round"></span>
 							</label>
 				        	<%= form_with(url: toggle_feeding_path, method: :post) do |f| %>
+				        		<%= f.text_field :status, value:"on" %>
 								<%= f.submit "save", class: 'btn btn-primary' %>
 							<% end %>
 		        	</div>
