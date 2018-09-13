@@ -18,9 +18,6 @@ ActiveRecord::Schema.define(version: 2018_09_10_163500) do
   create_table "emails", force: :cascade do |t|
     t.string "email1"
     t.string "email2"
-    t.string "email3"
-    t.string "email4"
-    t.string "email5"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "feeding_id"

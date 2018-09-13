@@ -129,9 +129,6 @@ class FeedingsController < ApplicationController
 
 		@email.email1 = params[:email1]
 		@email.email2 = params[:email2]
-		@email.email3 = params[:email3]
-		@email.email4 = params[:email4]
-		@email.email5 = params[:email5]
 
 		params[:feeding_time_1] == 'None' ? (@feed_time.feeding_time_1 = nil) : (@feed_time.feeding_time_1 = Time.at(@time_conversion[params[:feeding_time_1]]))
 		params[:feeding_time_2] == 'None' ? (@feed_time.feeding_time_2 = nil) : (@feed_time.feeding_time_2 = Time.at(@time_conversion[params[:feeding_time_2]]))
@@ -219,7 +216,7 @@ class FeedingsController < ApplicationController
 
 	  # Never trust parameters from the scary internet, only allow the white list through.
 	  def feeding_params
-	    params.require(:feeding, :email, :feeding_time).permit(:email1, :email2, :email3, :email4, :email5, :feeding_time_1, :feeding_time_2, :feeding_time_3, :feeding_time_4, :feeding_duration)
+	    params.require(:feeding, :email, :feeding_time).permit(:email1, :email2, :feeding_time_1, :feeding_time_2, :feeding_time_3, :feeding_time_4, :feeding_duration)
 	  end
 
 end

@@ -1,7 +1,7 @@
 
 <p> Dear <%= Feeding.first.pet_name %>'s owner, </p>
 
-<p> Your pet food dispenser has dispensed food for <%= Feeding.first.feeding_duration %> seconds at <strong><%= Time.now.to_formatted_s(:long_ordinal)%></strong>. Now you can be rest assured that your pet is well fed, woof!</p> <br>
+<p> Food has been dispensed at <strong><%= Time.now.to_formatted_s(:long_ordinal)%></strong>. Now you can be rest assured that <%= Feeding.first.pet_name %> is well fed, woof!</p> <br>
 
 
 <p> With love from the Woofles team </p><br><br>
