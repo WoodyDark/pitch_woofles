@@ -19,10 +19,13 @@ class FeedingsController < ApplicationController
 	end
 
 	def toggle_feeding
-		if params[:automated_feeding == "on"]
-			redirect_to root_path
-		else
+		if params[:status] == "on"
+			Feeding.first.automated_feeding = true
+		elsif params[:status] == "off"
+			Feeding.first.automated_feeding = false
 		end
+		Feeding.first.save
+		redirect_to root_path
 	end
 
 

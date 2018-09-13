@@ -33,48 +33,83 @@ $(document).ready(function() {
 	const zero = document.getElementById("0");
 	let clearAll = document.getElementById("clear");
 
-	one.onclick = function(){
-		pinField.value+='1';
+
+	if (one == undefined) {
+		console.log('no numpad');
+	} else {
+		
+		one.onclick = function(){
+			pinField.value+='1';
+		};
+
+		two.onclick = function(){
+			pinField.value+='2';
+		};
+
+		three.onclick = function(){
+			pinField.value+='3';
+		};
+
+		four.onclick = function(){
+			pinField.value+='4';
+		};
+
+		five.onclick = function(){
+			pinField.value+='5';
+		};
+
+		six.onclick = function(){
+			pinField.value+='6';
+		};
+
+		seven.onclick = function(){
+			pinField.value+='7';
+		};
+
+		eight.onclick = function(){
+			pinField.value+='8';
+		};
+
+		nine.onclick = function(){
+			pinField.value+='9';
+		};
+
+		zero.onclick = function(){
+			pinField.value+='0';
+		};
+
+		clearAll.onclick = function(){
+			pinField.value='';
+		};
+
+	}
+
+
+
+	const checkbox = document.getElementById("feedcheckbox");
+
+	const span = document.getElementById("span");
+
+	const statusValue = document.getElementById("statusValue");
+
+	const hiddenBtn = document.getElementById("hiddenbtn");
+
+	function clickHidden() {
+		hiddenBtn.click();
 	};
 
-	two.onclick = function(){
-		pinField.value+='2';
-	};
+	checkbox.onclick = function(){
+		if (checkbox.checked == true) {
+			checkbox.checked = true;
+			statusValue.value = "on";
+			clickHidden()
+		} else {
+			checkbox.checked = false;
+			statusValue.value = "off";
+			clickHidden()
+		}
 
-	three.onclick = function(){
-		pinField.value+='3';
 	};
-
-	four.onclick = function(){
-		pinField.value+='4';
-	};
-
-	five.onclick = function(){
-		pinField.value+='5';
-	};
-
-	six.onclick = function(){
-		pinField.value+='6';
-	};
-
-	seven.onclick = function(){
-		pinField.value+='7';
-	};
-
-	eight.onclick = function(){
-		pinField.value+='8';
-	};
-
-	nine.onclick = function(){
-		pinField.value+='9';
-	};
-
-	zero.onclick = function(){
-		pinField.value+='0';
-	};
-
-	clearAll.onclick = function(){
-		pinField.value='';
-	};
+	console.log('hi')
 
 });

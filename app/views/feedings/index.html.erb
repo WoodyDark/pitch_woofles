@@ -34,12 +34,12 @@
 		        	<div class="pt-3">
 			        	<h5>Automatic Feeding</h5>
 				        	<label class="switch">
-								  <input type="checkbox" name="automated_feeding"<%= Feeding.first.automated_feeding == true ? ('checked') : ('') %> id="toggleFeeding">
-								  <span class="slider round"></span>
+								  <input id="feedcheckbox" type="checkbox" name="automated_feeding"<%= Feeding.first.automated_feeding == true ? ('checked') : ('') %> id="toggleFeeding">
+								  <span id="span" class="slider round"></span>
 							</label>
-				        	<%= form_with(url: toggle_feeding_path, method: :post) do |f| %>
-				        		<%= f.text_field :status, value:"on" %>
-								<%= f.submit "save", class: 'btn btn-primary' %>
+				        	<%= form_with(url: toggle_feeding_path, method: :post, class: 'd-none') do |f| %>
+				        		<%= f.text_field :status, value:"on", id:"statusValue" %>
+								<%= f.submit "save", class: 'btn btn-primary', id:'hiddenbtn' %>
 							<% end %>
 		        	</div>
 		        	<hr class="px-5">
