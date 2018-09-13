@@ -18,6 +18,13 @@ class FeedingsController < ApplicationController
 		end
 	end
 
+	def toggle_feeding
+		if params[:automated_feeding == "on"]
+			redirect_to root_path
+		else
+		end
+	end
+
 
 	def new
 		@feeding = Feeding.new
@@ -159,10 +166,6 @@ class FeedingsController < ApplicationController
 		out_file.puts '  command "python #{path}/../feed.py"'
 		out_file.puts '  command "date"'
 		out_file.puts "end"
-		out_file.puts ""
-		out_file.puts "every :sunday, at: '12pm' do"
-		out_file.puts '  runner "Task.do_something_great"'
-		out_file.puts "end"
 		out_file.close
 
 
@@ -216,7 +219,7 @@ class FeedingsController < ApplicationController
 
 	  # Never trust parameters from the scary internet, only allow the white list through.
 	  def feeding_params
-	    params.require(:feeding, :email, :feeding_time).permit(:email1, :email2, :feeding_time_1, :feeding_time_2, :feeding_time_3, :feeding_time_4, :feeding_duration)
+	    params.require(:feeding, :email, :feeding_time).permit(:automated_feeding,:email1, :email2, :feeding_time_1, :feeding_time_2, :feeding_time_3, :feeding_time_4, :feeding_duration)
 	  end
 
 end
